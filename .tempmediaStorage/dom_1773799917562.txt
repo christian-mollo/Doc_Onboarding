@@ -1,0 +1,79 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+[0] (32,21)<label class='Label__LabelElement-sc-14v3am6-1 SljKv'>ENVIRONMENT />
+No Environment
+[1] (152,21)<label class='Label__LabelElement-sc-14v3am6-1 SljKv'>LAYOUT />
+option Single Column focused, 1 of 2. 2 results available. Use Up and Down to choose options, press Enter to select the currently focused option, press Escape to exit the menu, press Tab to select the option and exit the menu.
+Single Column
+[2] (223,65)<div class='aether-dropdown__option css-uwoi5k-option' id='react-select-3-option-0' />
+	[3] (223,65)<div >Single Column />
+		[4] (183,65)<i  />
+[5] (223,95)<div class='aether-dropdown__option css-uwoi5k-option' id='react-select-3-option-1' />
+	[6] (223,95)<div >Double Column />
+		[7] (183,95)<div  />
+[8] (261,21)<label class='Label__LabelElement-sc-14v3am6-1 SljKv'>LANGUAGE />
+cURL - cURL
+[9] (352,21)<button class='Button__StyledButton-b8af3e-1 gaHlYy' />
+	[10] (352,21)<i  />
+[11] (911,21)<span  />
+[12] (960,21)<div  />
+[13] (68,542)<div  />
+	Servicios de Identidad y Firma v3
+	[14] (68,138)<div  />
+		[15] (30,137)<a href='#intro'>Introduction />
+	[16] (13,169)<div  />
+		[17] (13,169)<i  />
+	[18] (81,169)<div >Flujo Identidad Digital />
+Campo obligatorio
+Tipo String (Opciones de valores permitidos: jpg, jpeg, png, JPG. JPEG, PNG)
+Longitud min 3
+Longitud max 4
+reverseData -
+foto del reverso del carnet de identidad de la persona en formato base64
+Campo obligatorio
+Tipo String (foto en formato base64. Ejm: "/9j/4AAQgABAQAAAQABAAD/2wBDAAYGBgYHBgcICAcKCwoLCg8O........")
+reverseFormat -
+fomato de la foto del reverso del carnet de identidad de la persona
+Campo obligatorio
+Tipo String (Opciones de valores permitidos: jpg, jpeg, png, JPG. JPEG, PNG)
+Longitud min 3
+Longitud max 4
+Especificación técnica de las imágenes.
+Cédula de Identidad:
+El tamaño recomendado para enviar las imágenes de la cédula de identidad, es que no pesen más de 900KB/1MB. Entre más livianas sean las imágenes, el proceso será mucho más rápido.
+Se recomienda una resolución mínima de 1024 × 768. Las imágenes se deben enviar en formato base64 y se debe especificar el formato.
+La posición del carnet debe ser horizontal al momento del envío (la foto se toma en vertical, por lo tanto requiere un giro).
+Descripción response
+Code 200 - OK
+Se pudo leer y obtener correctamente los datos la cedula de identidad.
+Tome en cuenta que los valores indicados como opcionales son aquellos que pueden o no ser obtenidos, en caso de que no sean detectados en la lectura OCR
+se mostrara como "".
+message
+: Contiene el mensaje de confirmación de la transacción, Valor constante
+"
+OK
+"
+data
+:
+code
+: Código de la transacción: Campo obligatorio, Tipo String (valor constante: "DOCUMENT"), longitud exacta 8
+type:
+Tipo de la transacción: Campo obligatorio, Tipo String (valor constante: "READ"), longitud exacta 4
+subtype
+: Subtipo de la transacción: Campo obligatorio, Tipo String (valor constante: "OCR"), longitud exacta 3
+createdAt
+: Fecha actual cuando se ejecuta la accion de la transacción: Campo obligatorio, Tipo Date YYYY-MM-DDTHH:MM:SS.mmmZ
+id
+: Identificador de la transacción (valor del transactionId para el EndPoint createIdentity): Campo obligatorio, Tipo String, longitud exacta 18, tiene una validez de 30 minutos
+data:
+Estructura de datos de la transacción
+digitalIdentity:
+Estructura con datos de la identidad de la persona
+personId
+: Campo obligatorio, Tipo Number (Valor constante: 0)
+personalData
+: Estructura con datos de la identidad de la persona
+
+</current_dom>

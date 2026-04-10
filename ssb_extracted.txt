@@ -1,0 +1,350 @@
+
+
+
+
+
+
+
+
+
+Análisis del Flujo de OnBoarding Digital
+Apertura de Cuenta Digital
+Documento de análisis para gerencia y stakeholders de negocio
+Marzo 2026
+Clasificación: Confidencial – Uso interno
+
+1. Resumen ejecutivo
+El presente documento analiza el flujo de OnBoarding Digital de Scandinavian Software Bank (SSB), correspondiente al proceso de Apertura de Cuenta Digital. Se identifican los datos capturados en cada etapa, los sistemas externos integrados y los tipos de cuenta disponibles.
+
+El proceso permite a un nuevo cliente abrir una cuenta bancaria en aproximadamente 5 minutos, utilizando únicamente su Carnet de Identidad y un número de celular. El flujo se inicia desde la página web, redes sociales o la Banca Digital (WebApp) de SSB.
+
+2. Productos disponibles en el Flujo
+Durante el proceso de onboarding, el cliente selecciona uno de los siguientes tipos de cuenta:
+
+Tipo de Cuenta
+Descripción
+Fortaleza Plus
+Cuenta premium con beneficios adicionales para clientes de alto perfil.
+Mi Fortaleza
+Cuenta estándar de ahorro con acceso a servicios digitales completos.
+Mi Futuro
+Cuenta orientada a ahorro a largo plazo y planificación financiera.
+Superior
+Cuenta con características superiores para clientes con mayor actividad.
+
+
+3. Flujo de datos por etapa
+A continuación se detalla cada etapa del proceso de onboarding con los datos de entrada, capturados, validaciones y sistemas involucrados en cada paso.
+
+Datos de entrada / acción del usuario
+Datos capturados
+Validaciones
+Sistemas integrados
+
+
+1
+Ingreso al flujo
+Página web · Redes sociales · Banca Digital
+Dato de entrada
+• Canal de ingreso (web / redes sociales / banca digital)
+Acción del usuario
+• Selección del tipo de cuenta: Fortaleza Plus / Mi Fortaleza / Mi Futuro / Superior
+✓ Dato inicial registrado: canal de origen y tipo de cuenta seleccionado
+▼
+2
+Verificación de celular (OTP)
+Envío y validación del código por WhatsApp
+Dato de entrada
+• Número de celular del solicitante
+Sistema
+• WhatsApp (envío de OTP)
+Validaciones
+• Validez del OTP: 5 minutos
+• Máximo 2 intentos permitidos
+Dato capturado
+• Número de celular verificado y activo
+⚠ Si supera los 2 intentos → el proceso se bloquea temporalmente ('vuelva más tarde')
+▼
+3
+Formulario de identidad
+10 campos del Carnet de Identidad
+OCR automático (anverso CI)
+• Nombres y apellidos
+• Número de Carnet de Identidad
+• Complemento de CI
+• Fecha de nacimiento
+• Lugar y fecha de emisión
+• Fecha de vencimiento
+Ingreso manual
+• Estado civil
+• Profesión
+• Correo electrónico
+Imágenes capturadas
+• Foto anverso del CI
+• Foto reverso del CI
+• Selfi del solicitante
+✓ Total: 10 campos de identidad + 3 imágenes capturadas en esta etapa
+▼
+4
+Verificación de identidad
+OCR · Biometría · SEGIP · Matching facial
+Sistemas involucrados
+• OCR del CI (extracción de datos)
+• Prueba de vida pasiva (biometría)
+• Consulta al SEGIP (Gobierno de Bolivia)
+5 Validación en listas de riesgo
+• Doble matching facial (selfi vs foto CI)
+• Contrastación de datos (CI vs SEGIP vs formulario)
+Datos validados
+• Datos del CI vs registro SEGIP
+• Selfi del solicitante vs foto del CI
+• Resultado de prueba de vida: positivo
+Datos registrados
+• Resultado de verificación de identidad
+• Datos biométricos preliminares
+⚠ Máximo 3 intentos — si falla → derivación obligatoria a agencia física
+Nota: Cuando se identifique a la persona observada, el flujo deberá finalizar notificando al usuario que debe acudir a la sucursal de atención al cliente más cercana, donde se le proporcionará el detalle de los motivos correspondientes.
+▼
+5
+Validación en listas de riesgo
+PEP · AML · ASFI · Retenciones · BD Clientes
+Sistemas consultados
+• BD Clientes SSB (¿es cliente existente?)
+• Netbank (consulta en core bancario)
+• Lista de Retenciones
+• Lista PEP (Personas Políticamente Expuestas)
+• Lista AML (Anti-Money Laundering)
+• ASFI (Autoridad de Supervisión del Sistema Financiero)
+Datos consultados
+• Número de CI del solicitante
+• Nombre completo
+• Estado en base de clientes existentes
+Resultado esperado
+• Solicitante no figura en ninguna lista de riesgo
+⚠ Si figura en alguna lista de riesgo → FIN del proceso sin posibilidad de continuar
+Nota: En caso de que la verificación de identidad falle, el resultado indica que la información de la cédula de identidad del usuario no es válida.
+▼
+
+
+6
+Formulario de datos complementarios
+Situación laboral · Residencia · Ingresos
+Residencia
+• Ciudad y dirección de residencia
+Laboral
+• Situación laboral (empleado / independiente / etc.)
+• Empresa y dirección de trabajo
+• Cargo o posición
+Financiero
+• Nivel de ingresos mensuales
+Familiar
+• Nombre y actividad del cónyuge (si aplica)
+✓ Total: 6 campos complementarios recopilados para el perfil del cliente
+▼
+7
+Creación de identidad y cuenta
+Core bancario · Base biométrica · Firma digital
+Sistemas involucrados
+• Core bancario (creación de cliente y cuenta)
+• Base biométrica (registro permanente)
+• Firma Digital One Shot (nuevo cliente + representantes del banco)
+Datos generados
+• Código de cliente SSB
+• Número de cuenta bancaria
+• Documentos para firma digital (con datos de la cuenta)
+Datos firmados
+• Firma digital del nuevo cliente
+• Firma digital de representantes del banco
+• Registro de documentos firmados
+Registro biométrico
+• Datos biométricos guardados en base biométrica
+• Datos seleccionados: celular + tipo de cuenta
+✓ Todos los datos del proceso se consolidan y registran en el Core bancario en esta etapa
+▼
+8
+Bienvenida y entrega de cuenta
+Datos de cuenta · Documentos por WhatsApp
+Datos mostrados al cliente
+• Mensaje de bienvenida personalizado
+• Datos completos de la nueva cuenta creada
+Sistema de envío
+• WhatsApp: envío de documentos firmados digitalmente
+Resultado final
+• Cliente dado de alta en el sistema Core
+• Cuenta bancaria activa y operativa
+• Documentos firmados entregados al cliente
+✓ Proceso completado — el cliente puede operar su cuenta desde Banca Digital
+
+
+4. Inventario de datos capturados
+Consolidado de todos los datos recopilados del cliente a lo largo del flujo, organizados por formulario:
+
+4.1 Formulario de verificación de identidad
+#
+Campo
+Fuente
+Obligatorio
+1
+Nombres y apellidos
+OCR / CI
+Sí
+2
+Número de Carnet de Identidad
+OCR / CI
+Sí
+3
+Complemento de CI
+OCR / CI
+Si aplica
+4
+Fecha de nacimiento
+OCR / CI
+Sí
+5
+Lugar y fecha de emisión
+OCR / CI
+Sí
+6
+Estado civil
+Manual
+Sí
+7
+Fecha de vencimiento del CI
+OCR / CI
+Sí
+8
+Profesión
+Manual
+Sí
+9
+Número de celular
+Manual
+Sí
+10
+Correo electrónico
+Manual
+Sí
+
+4.2 Formulario de datos complementarios
+#
+Campo
+Categoría
+Obligatorio
+1
+Ciudad y dirección de residencia
+Residencia
+Sí
+2
+Situación laboral
+Laboral
+Sí
+3
+Empresa y dirección de trabajo
+Laboral
+Sí
+4
+Cargo
+Laboral
+Sí
+5
+Nivel de ingresos
+Financiero
+Sí
+6
+Nombre y actividad del cónyuge
+Familiar
+Si aplica
+
+4.3 Datos generados por el sistema
+Dato
+Descripción
+Código de cliente SSB
+Generado automáticamente al crear la cuenta
+Número de cuenta bancaria
+Asignado durante la creación en el Core
+Registro biométrico
+Datos de prueba de vida y selfi en base biométrica
+Documentos firmados digitalmente
+Generados y registrados en el sistema
+
+5. Integraciones con Sistemas Externos
+
+5.1 Verificación de Identidad
+Sistema
+Tipo
+Función en el Flujo
+SEGIP
+Externo – Gobierno de Bolivia
+Consulta y validación de datos del CI contra el registro oficial.
+OCR de CI
+Interno / Motor de visión
+Extracción automática de datos del anverso y reverso del CI.
+Prueba de Vida Pasiva
+Interno / Biométrico
+Verificación de que el solicitante es una persona real.
+Doble Matching Facial
+Interno / Biométrico
+Comparación de la selfi con la foto del CI.
+Contrastación de Datos
+Interno
+Validación cruzada entre CI, formulario y registros SEGIP.
+
+5.2 Cumplimiento Normativo y Listas de Riesgo
+Sistema / Lista
+Tipo
+Función en el Flujo
+BD Clientes (SSB)
+Interno
+Verifica si el solicitante ya es cliente activo de SSB.
+Retenciones
+Interno / Regulatorio
+Verificación contra lista de personas con retenciones.
+PEP
+Regulatorio – ASFI
+Identificación de Personas Políticamente Expuestas.
+AML
+Regulatorio – ASFI
+Verificación antilavado de activos.
+ASFI
+Externo – Autoridad de Supervisión
+Validación regulatoria directa con la ASFI Bolivia.
+
+
+
+
+5.3 Core Bancario y Comunicación
+Sistema
+Tipo
+Función en el Flujo
+Netbank (Core)
+Interno – Core
+Consulta inicial y recepción del alta del nuevo cliente.
+Sistema Core
+Interno – Core
+Registro definitivo. Creación de código de cliente y cuenta.
+WhatsApp (OTP)
+Externo – Canal digital
+Envío del código OTP. Validez de 5 minutos.
+WhatsApp (Documentos)
+Externo – Canal digital
+Envío de documentos firmados digitalmente al cliente.
+Firma Digital One Shot
+Interno / Externo
+Firma digital del cliente y representantes del banco.
+Base Biométrica
+Interno
+Registro permanente de datos biométricos del cliente.
+
+
+6. Observaciones y consideraciones
+
+6.1 Protección de datos personales
+El flujo captura datos sensibles del cliente, incluyendo información biométrica (selfi, prueba de vida), datos financieros (nivel de ingresos) y datos de identidad oficial (CI). Se recomienda verificar que el consentimiento de firma digital incluya cláusulas de protección de datos según normativa ASFI y legislación boliviana vigente.
+
+6.2 Puntos críticos del proceso
+Verificación de Identidad: máximo 3 intentos; al superar el límite, el cliente es derivado a una agencia física.
+Validación en listas de riesgo: si el cliente figura en alguna lista (ASFI, AML, PEP, Retenciones), el proceso termina automáticamente.
+Si hay coincidencia en BD Clientes, el flujo se adapta para clientes existentes.
+
+6.3 Canal de ingreso
+El proceso puede iniciarse desde tres canales distintos: Página Web, Redes Sociales y Banca Digital (WebApp). Esto amplía el alcance del producto pero requiere garantizar consistencia de experiencia en todos los canales.

@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Inventario detallado de todos los datos e información gestionados por la API \"Identidad y Firma v3\". Clasifica los datos en credenciales, PII extraída por OCR, datos biométricos sensibles y metadatos operativos, especificando su propósito y formato.",
+  "updatedAt": "2026-03-18T06:05:12.056010700Z"
+}

@@ -1,0 +1,86 @@
+[0] (32,21)<label class='Label__LabelElement-sc-14v3am6-1 SljKv'>ENVIRONMENT />
+No Environment
+[1] (152,21)<label class='Label__LabelElement-sc-14v3am6-1 SljKv'>LAYOUT />
+Single Column
+[2] (261,21)<label class='Label__LabelElement-sc-14v3am6-1 SljKv'>LANGUAGE />
+cURL - cURL
+[3] (352,21)<button class='Button__StyledButton-b8af3e-1 gaHlYy' />
+	[4] (352,21)<i  />
+[5] (911,21)<span  />
+[6] (960,21)<div  />
+[7] (68,542)<div  />
+	Servicios de Identidad y Firma v3
+	[8] (68,138)<div  />
+		[9] (30,137)<a href='#intro'>Introduction />
+	[10] (13,169)<div  />
+		[11] (13,169)<i  />
+	[12] (81,169)<div >Flujo Identidad Digital />
+	POST
+	[13] (86,199)<div >0. GetToken />
+	POST
+	[14] (86,229)<div >Get OCR />
+	POST
+	[15] (86,258)<div >Create Double Identity />
+data:
+id
+: Identificador del registro de la identidad digital de la persona: Campo obligatorio, Tipo String
+givenNames
+: Nombre(s) de la persona: Campo obligatorio, Tipo String, Longitud max 40
+surname_1
+: Primer apellido de la persona: Campo obligatorio Tipo String, Longitud max 30
+surname_2
+: Segundo apellido de la persona: Campo opcional, Tipo String, Longitud max 30
+fullname:
+Nombre completo de la persona: Campo obligatorio, Tipo String, Longitud max 100
+birthDate
+: Fecha de nacimiento de la persona: Campo obligatorio, Tipo Date AAAA-MM-DDTHH:mm:ss.SSS+00:00
+gender
+: Genero de la persona: Campo obligatorio, Tipo String (Opciones de valores permitidos: MALE, FEMALE, NOT_KNOWN, NOT_APPLICABLE), Longitud min 4, Longitud max 14
+email
+: Correo electronicode la persona: Campo obligatorio, Tipo String (Formato de correo electronico), Longitud min 5, Longitud max 50
+phoneNumber
+: Número de celular de la persona: Campo obligatorio, Tipo String (Números), Longitud exacta 8
+residence
+: País de residencia de la persona: Campo obligatorio, Tipo String (Opciones de valores permitidos corresponden a la ISO alpha2. Ejm para Bolivia: BO), Longitud exacta 2
+residence_city
+: Ciudad de residencia de la persona: Campo obligatorio, Tipo String (Acepta dos letras indicando el código de la ciudad de residencia, EJEMPLO: CB, BA, LP), Longitud exacta 2
+residence_address
+: Dirección de residencia de la persona: Campo obligatorio, Tipo String (Valores alfabeticos y númericos, incluyendo los caracteres -./#&*+ªº), Longitud min 1, Longitud max 90
+uuidCode:
+Código UUID, identificador de la persona. Campo obligatorio, Tipo String, Longitud exacta 36
+verifications:
+Listado de verificaciones: Tipo ArrayList
+selfieData
+: Base46 de la foto de la persona: Campo obligatorio, Tipo String (foto en formato base64. Ejm: "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYGBgYHBgcICAcKCwoLCg8O........")
+selfieFormat
+: Formato de la foto de la persona: Campo obligatorio, Tipo String (Opciones de valores permitidos: jpg, jpeg, png)
+createAt
+: Fecha actual cuando se ejecuta la acción de la transacción: Campo obligatorio, Tipo Date AAAA-MM-DDTHH:mm:ss.SSS+00:00
+identityDocument
+: Estructura con datos del documento de la persona
+id
+: Identificador del registro de la cedula de identidad: Campo obligatorio, Tipo String
+type
+: Tipo de documento: Campo obligatorio, Tipo String (valor constante: "CI"), longitud exacta 2
+countryCode
+: Código del país del documento de identidad: Campo obligatorio, Tipo String, longitud min 2, longitud max 3
+number
+: Numero de serie de la cedula de identidad: Campo opcional, Tipo String (Números), Longitud unica 5
+personalNumber
+: Numero de cedula de identidad: Campo obligatorio, Tipo String (Números), Longitud min 6, Longitud max 8. Puede contener el complemento concatenado con guion medio, sin espacios, en este caso: Tipo String (2 caracteres alfanumericos), Longitud min 9, Longitud max 11
+complement
+: Campo opcional, Tipo String, valor constante null
+issuingAuthority
+: Nombre de identidad registradora (Ejem: Registro Civil): Campo opcional, Tipo String
+issueDate
+- Fecha de emisión de la cedula de identidad: Campo opcional, Tipo Date AAAA-MM-DDTHH:mm:ss.SSS+00:00
+expiryDate
+- Fecha de expiración de la cedula de identidad: Campo opcional, Tipo Date AAAA-MM-DDTHH:mm:ss.SSS+00:00
+issuePlace -
+Lugar de emisión de la cédula de identidad: Campo opcional, Tipo String (Opciones de valores permitidos: LP, CB, SC, OR, CH, TJ, PO, BE, PA), Longitud exacta 2
+nationality -
+Nacionalidad de la persona: Campo obligatorio, Tipo String (Acepta Ñ, No permite espacios ni caracteres especiales EJM: BOLIVIANO, CHILENO, ARGENTINO, ETC..), Longitud max 15
+bornPlace
+- Lugar de nacimiento de la persona: Campo opcional, Tipo String (Permite Ñ y - Ejm: LA PAZ - MURILLO - NUESTRA SEÑORA DE LA PAZ), Longitud max 90
+profession -
+Profesión de la persona: Campo opcional, Tipo String(Acepta Ñ y los caracteres /(), no permite otros caracteres especiales), Longitud min 5, Longitud max 60

@@ -1,0 +1,32 @@
+# Security Risk Assessment: Identidad y Firma v3 (Banking Standards)
+
+## Identified Risks
+
+### 1. Exposure of Sensitive PII and Biometrics (OWASP A03:2021)
+- **Risk**: Request bodies for `getOCR` and `createdoubleidentity` contain Base64 strings of ID cards and selfies.
+- **Impact**: Accidental logging or interception could lead to identity theft.
+- **Mitigation**: 
+  - Implementation of **Data Masking** in all logging interceptors.
+  - Strict **Field-level encryption** for PII in transit where applicable.
+
+### 2. Dependency on External Identity Providers (SEGIP)
+- **Risk**: The system's availability depends on a government-run database.
+- **Impact**: Latency or outages in SEGIP could disrupt the banking onboarding process.
+- **Mitigation**:
+  - Implementation of **Circuit Breakers (Resilience4j)** to fail fast and provide meaningful fallbacks.
+  - **Asynchronous processing** for non-blocking onboarding steps.
+
+### 3. Lack of Rate Limiting and DoS Vulnerability
+- **Risk**: The API endpoints are resource-intensive (OCR/Biometric processing).
+- **Impact**: Malicious actors could exhaustion resources.
+- **Mitigation**:
+  - Implement **Rate Limiting** at the API Gateway level (e.g., Spring Cloud Gateway).
+  - Use **Web Application Firewall (WAF)** for request filtering.
+
+## Proposed Security Controls (Banking Grade)
+
+- **Zero Trust Architecture**: No implicit trust. Validate JWT scopes and roles on every internal call.
+- **Mutual TLS (mTLS)**: Enforce certificate-based authentication between the Spring Boot backend and the Identity microservices.
+- **JSON Web Encryption (JWE)**: Encrypt sensitive payloads using public/private key pairs if data needs to be temporarily cached.
+- **Traceability**: Compulsory `X-Correlation-ID` for every transaction to ensure end-to-end auditability.
+- **Auditing**: Log every authentication event and state transition (Draft -> Pending -> Validated).

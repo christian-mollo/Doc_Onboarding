@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Evaluación de riesgos de seguridad para la API \"Identidad y Firma v3\", enfocada en requisitos bancarios empresariales. Incluye análisis de datos sensibles (PII/Biometría), riesgos de dependencia y controles de seguridad propuestos. Traducido al español.",
+  "updatedAt": "2026-03-18T01:33:11.937711300Z",
+  "version": "1"
+}

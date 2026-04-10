@@ -1,0 +1,31 @@
+# API Technical Specification: Identidad y Firma v3
+
+## Global Configuration
+- **Environment Variables**:
+  - `{{BASIC__URL}}`: Keycloak authentication server URL.
+  - `{{BASIC_URL}}`: Identity microservices base URL.
+  - `client_id`: `digital-identity`
+  - `client_secret`: Confidential (OAuth2)
+- **Base Paths**:
+  - Auth: `/auth/realms/digital_identity/protocol/openid-connect`
+  - Services: `/api/ms-digital-identity-profirma`
+
+## Authentication Flow (OAuth2 Password Grant)
+1. **Endpoint**: `POST {{BASIC__URL}}/auth/realms/digital_identity/protocol/openid-connect/token`
+2. **Headers**: `Content-Type: application/x-www-form-urlencoded`
+3. **Payload**: `grant_type=password&username={{username}}&password={{password}}&client_id={{client_id}}&client_secret={{client_secret}}`
+4. **Response**: JWT Access Token (Bearer).
+
+## Endpoint Table
+
+| Module | Endpoint | Method | Path | Auth | Headers | Request (JSON) | Response (JSON) | Description |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Auth** | `GetToken` | POST | `/auth/.../token` | Basic/Form | `Content-Type: x-www-form-urlencoded` | `grant_type=password`, etc. | `access_token`, `refresh_token`, `expires_in` | OAuth2 Login flow. |
+| **Identity** | `Get OCR` | POST | `/getOCR` | Bearer | `Content-Type: application/json` | `{ "image": "base64..." }` | `{ "data": { "name": "...", "id": "..." } }` | Extract data from ID card image via OCR. |
+| **Validation** | `Create Double Identity` | POST | `/createdoubleidentity/` | Bearer | `Content-Type: application/json` | `{ "givenNames": "...", "idNumber": "...", "personalBiography": "base64_selfie" }` | `{ "status": "SUCCESS", "txId": "..." }` | Register identity with biometrics + SEGIP. |
+| **Validation** | `Update Identity` | PUT | `/updateidentity` | Bearer | `Content-Type: application/json` | `{ "id": "...", "status": "..." }` | `{ "message": "Updated" }` | Update identity registration status. |
+
+## Business Domain Logic
+1. **Onboarding**: The flow starts by capturing identification images (OCR).
+2. **Biometrics**: A selfie is compared against the government database (SEGIP) using the `createdoubleidentity` endpoint.
+3. **Traceability**: All calls use a `transactionId` in query params for correlation between front and back.

@@ -1,0 +1,36 @@
+# Backend Architecture Strategy: Internal Gateway & ACL
+
+## Architecture Diagram (Mermaid)
+
+```mermaid
+graph TD
+    A[Frontend React] -- HTTPS / JWT --> B[Backend Spring Boot 4.x]
+    B -- WebClient / OAuth2 --> C[Keycloak Auth]
+    B -- WebClient / Circuit Breaker --> D[Identity Microservices]
+    D -- API Call --> E[SEGIP / Gov Database]
+    
+    subgraph "Spring Boot Internal Components"
+        B1[Security Filter Chain]
+        B2[Identity Controller]
+        B3[Anti-Corruption Layer - ACL]
+        B4[Resilient Client]
+        
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+    end
+```
+
+## Strategy Components
+
+### 1. Internal API Gateway
+The Spring Boot backend acts as a single point of entry for the frontend, consolidating calls to multiple microservices (Auth, Identity, Validation). It handles authentication propagation (Token Relay).
+
+### 2. Anti-Corruption Layer (ACL)
+Integrates external API models into the bank's internal domain models. This prevents external API changes from breaking the entire frontend/backend business logic.
+
+### 3. Resilience Layer
+Uses Resilience4j to manage timeouts and retries for the SEGIP integration, ensuring the system remains stable even under external provider failure.
+
+### 4. Observability Layer
+Integrates Micrometer and OpenTelemetry for total visibility into the onboarding lifecycle.
