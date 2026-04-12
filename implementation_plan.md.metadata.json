@@ -1,6 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
-  "summary": "Plan de integración para la API bancaria \"Identidad y Firma v3\" con un backend Spring Boot 4.x. Incluye pasos para el análisis, seguridad, generación de OpenAPI y creación de un componente backend resiliente. Todo traducido al español.",
-  "updatedAt": "2026-03-18T01:33:01.020216500Z",
-  "version": "1"
-}
