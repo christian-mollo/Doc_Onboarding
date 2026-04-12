@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Reglas y competencias de desarrollo para el proyecto \"Identidad y Firma v3\". Establece estándares estrictos para validación de datos (Mayúsculas), manejo de errores reactivos, resiliencia con WebClient y seguridad de secretos. Diseñado para minimizar errores en aplicaciones bancarias de misión crítica.",
-  "updatedAt": "2026-03-18T02:15:35.630468900Z"
-}
