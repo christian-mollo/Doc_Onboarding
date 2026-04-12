@@ -1,6 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Estrategia de arquitectura para el backend Spring Boot 4.x actuando como Gateway de API Interno y Capa Anti-Corrupción (ACL). Incluye diagrama Mermaid con descripciones en español.",
-  "updatedAt": "2026-03-18T01:33:12.004513600Z",
-  "version": "1"
-}
